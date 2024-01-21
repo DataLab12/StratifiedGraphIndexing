@@ -31,11 +31,7 @@ while(quit_cmd != 'q'):
     n_neighbors = input('Enter the number of nearest neghbors: ')
     n_neighbors = int(n_neighbors)
 
-    # query_indexes = [0,15,123,500,888,1234,3456,4567,7890,8888]
-
-    # query_indexes = [10,20,500,3456,7890,12345,34567,66666,77777,88888]
-    # query_indexes = [10,20,500,3456,7890,1234,34567,66666,77777,88888]
-    query_indexes = [0]
+    query_indexes = [0,15,123,500,888,1234,3456,4567,7890,8888]
 
     print('Data shape: ',data.shape)
 
@@ -50,9 +46,6 @@ while(quit_cmd != 'q'):
     idx_path = f"indexes/{name}_SG.ind"
     if not os.path.exists(idx_path):
         add_point_time = time.time()
-        # for idx, i in enumerate(data):
-        #     index.add(i)
-        #     # hnsw_balanced.add(i)
         print('Indexing...')
         index = sg_indexing.build_index(name,path,data,M,ef)
         print("SG indexing time: %f" % (time.time() - add_point_time))
@@ -99,7 +92,7 @@ while(quit_cmd != 'q'):
             # print('IDX:',i[0])
             pred.append(i[0])
         # print('TRUEEEEEE: ',true)
-        # print('PREDDDDDD: ',pred)
+        print('PREDDDDDD: ',pred)
 
         recall = evaluation.recall(true,pred)
         print('Recall intermediate for ',q,' is: ',recall)
